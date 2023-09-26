@@ -1,0 +1,1 @@
+data/: Stores data files, such as history.json, which keeps track of the conversation history.
