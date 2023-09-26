@@ -1,0 +1,8 @@
+{
+    "openai": {
+        "api_key": "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"
+    },
+    "other_api": {
+        "api_key": "your_other_api_key_here"
+    }
+}

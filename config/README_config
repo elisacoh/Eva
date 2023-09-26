@@ -1,1 +1,3 @@
 config/: Contains a config.json file for storing configuration settings like API keys and options.
+
+start_recording() : for now this function record an audio given an input and record it in a file called recorded_audio.wav
