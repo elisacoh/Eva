@@ -1,27 +1,27 @@
-my_voice_assistant/
-│
-├── config/
-│   ├── config.json          # Configuration settings (API keys, options, etc.)
-│
-├── data/
-│   ├── history.json         # JSON file to store conversation history
-│
-├── models/
-│   ├── intermediate_model/  # Directory for intermediate models (if needed)
-│
-├── src/
-│   ├── __init__.py
-│   ├── voice_input.py       # Module for voice-to-text processing
-│   ├── text_processing.py   # Module for text processing and GPT-3 interactions
-│   ├── voice_output.py      # Module for text-to-voice conversion
-│   ├── assistant.py         # Main AI assistant logic
-│
-├── templates/
-│   ├── standard_sentences/  # Templates for standard sentences
-│
-├── tests/
-│   ├── test_voice_input.py  # Unit tests for voice-to-text processing
-│   ├── test_text_processing.py  # Unit tests for text processing
-│   ├── test_voice_output.py  # Unit tests for text-to-voice conversion
-│
-├── main.py                  # Main program to run the AI assistant
+Eva/
+     config/
+        api_keys.json          # Configuration settings (API keys, options, etc.)
+        prompts.json           # Contains prompts for the code todo : make a generic form
+
+    data/
+        history.json         # JSON file to store conversation history
+
+    models/
+        intermediate_model/  # Directory for intermediate models (if needed)
+
+    src/
+        __init__.py
+        voice_input.py       # Module for voice-to-text processing
+        text_processing.py   # Module for text processing and GPT-3 interactions
+        voice_output.py      # Module for text-to-voice conversion
+        assistant.py         # Main AI assistant logic
+
+    templates/
+    standard_sentences/  # Templates for standard sentences
+
+    tests/
+        test_voice_input.py  # Unit tests for voice-to-text processing
+        test_text_processing.py  # Unit tests for text processing
+        test_voice_output.py  # Unit tests for text-to-voice conversion
+
+    main.py                  # Main program to run the AI assistant

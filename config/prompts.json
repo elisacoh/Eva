@@ -1,6 +1,31 @@
 {
-    "gpt_prompts": {
-        "prompt_1": "Your first GPT prompt here.",
-        "prompt_2": "Your second GPT prompt here."
-    }
+    "client": "LCL- Credit Lyonnais",
+    "type": "Bank",
+    "tonality": "Formal",
+    "styling": "Professional as someone who works at a bank",
+    "services": {
+      "Banker": {
+        "prompt": "You are being transferred to a private banker",
+        "redirect_service": "Banker",
+        "criteria": ["banker", "speak to a banker"]
+      },
+      "Check": {
+        "prompt": "You are being transferred to the check department service",
+        "redirect_service": "Check",
+        "criteria": ["check", "receive a check"]
+      }
+
+    },
+    "special_information": "Important notice: Our branch located at [Location] is closed today.",
+    "welcome_messages": [
+      "Welcome to Client Name 1's customer service.",
+      "We're here to assist you."
+    ],
+    "end_message": [
+        "You are being transfered to the right service, thank you for your patience. Have an excellent day."
+    ],
+    "client_info": [
+      "you do not offer services for new client, only current client of the bank"
+    ]
 }
+

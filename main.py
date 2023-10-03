@@ -1,13 +1,9 @@
 # The main program file that orchestrates the AI assistant and handles user interactions.
-from src import assistant, voice_output
-# import voice_input #todo : remettre 
+from src import voice_input, assistant, voice_output
 import keyboard
 import openai
 import json
 import os
-import streamlit as st
-
-st.set_page_config(page_title="Eva Vocal Assistant")
 
 
 # todo: change it to this implementation:
