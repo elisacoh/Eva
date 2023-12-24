@@ -66,3 +66,4 @@ def start_recording():
     wave_file.close()
 
     print("Recording saved to", WAVE_OUTPUT_FILENAME)
+

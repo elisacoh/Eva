@@ -1,5 +1,1 @@
-streamlit
-keyboard
-openai
-json
-os
+pyaudio

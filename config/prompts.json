@@ -1,31 +1,94 @@
 {
     "client": "LCL- Credit Lyonnais",
-    "type": "Bank",
+    "definition":[ "You are a vocal assistant for a bank called LCL- Credit Lyonnnais (always introduce yourself), your role is to answer customer call and redirect them to the right service. You replace the automatic menu. You need to be as succinct as possible but polite, and answer as an human would have done. Do not tolerate bad language. ",
+      "When a demand has been made, your answer must include : you are redirected to the <title menu> service. Unless there is not enough information  then you just continue the conversation or unless there is no menu option for the request then you need to say it."
+    ],
+    "back_def": "Given an input you need to chose which number of the following menu is the most suitable. You answer is only the number, nothing else.",
+  "type": "Bank",
     "tonality": "Formal",
     "styling": "Professional as someone who works at a bank",
-    "services": {
-      "Banker": {
-        "prompt": "You are being transferred to a private banker",
-        "redirect_service": "Banker",
-        "criteria": ["banker", "speak to a banker"]
-      },
-      "Check": {
-        "prompt": "You are being transferred to the check department service",
-        "redirect_service": "Check",
-        "criteria": ["check", "receive a check"]
-      }
-
-    },
-    "special_information": "Important notice: Our branch located at [Location] is closed today.",
-    "welcome_messages": [
-      "Welcome to Client Name 1's customer service.",
-      "We're here to assist you."
-    ],
-    "end_message": [
-        "You are being transfered to the right service, thank you for your patience. Have an excellent day."
-    ],
-    "client_info": [
-      "you do not offer services for new client, only current client of the bank"
-    ]
+  "menu": [
+    "0. There is not enough information to conclude exactly where to redirect.",
+    "1. Account Balance Inquiry : Customers can check the balance of their checking, savings, or other accounts.",
+    "2. Transaction History : Access a history of recent transactions, including deposits, withdrawals, and transfers.",
+    "3. Fund Transfers : Transfer money between accounts, both within the same bank and to external accounts.",
+    "4. Bill Payments : Pay bills, such as utilities, credit cards, loans, and mortgages.",
+    "5. Card Services : Report a lost or stolen debit or credit card, or inquire about card transactions.",
+    "6. Account Statements : Request or receive account statements via email or regular mail.",
+    "7. Change Personal Information : Update contact information, mailing address, or email address.",
+    "8. Loan and Mortgage Information : Inquire about existing loans, mortgage rates, and payment options.",
+    "9. Customer Support : Speak with a customer service representative for inquiries, issues, or complaints.",
+    "10. Account Opening : Inquire about opening new accounts, such as savings, certificates of deposit (CDs), or retirement accounts.",
+    "11. Financial Advice : Access financial advisory services for investment guidance or retirement planning.",
+    "12. Interest Rates : Check current interest rates for savings accounts, loans, or other financial products.",
+    "13. Branch and ATM Locator : Find the nearest branch or ATM locations.",
+    "14. Credit Score : Inquire about credit scores or credit reports.",
+    "15. Password and Security Reset : Reset passwords or inquire about account security.",
+    "16. Language Options : Choose a preferred language for communication.",
+    "17. Feedback and Surveys : Participate in customer satisfaction surveys or provide feedback.",
+    "18. Request Callback : Request a callback from a bank representative for more complex inquiries."
+  ],
+   "menu_option": [
+    "Account Balance Inquiry",
+    "Transaction History",
+    "Fund Transfers",
+    "Bill Payments",
+    "Card Services",
+    "Account Statements",
+    "Change Personal Information",
+    "Loan and Mortgage Information",
+    "Customer Support",
+    "Account Opening",
+    "Financial Advice",
+    "Interest Rates",
+    "Branch and ATM Locator",
+    "Credit Score",
+    "Password and Security Reset",
+    "Language Options",
+    "Feedback and Surveys",
+    "Request Callback"
+  ],
+   "menu_french": [
+     "0. Il n'y a pas suffisamment d'informations pour conclure exactement vers où rediriger.",
+     "1. Demande de solde de compte : Les clients peuvent vérifier le solde de leur compte chèque, d'épargne ou d'autres comptes.",
+     "2. Historique des transactions : Accédez à l'historique des transactions récentes, y compris les dépôts, les retraits et les virements.",
+     "3. Virements de fonds : Transférez de l'argent entre des comptes, tant au sein de la même banque qu'à des comptes externes.",
+     "4. Paiement de factures : Payez des factures telles que les services publics, les cartes de crédit, les prêts et les hypothèques.",
+     "5. Services de cartes : Signalez une carte de débit ou de crédit perdue ou volée, ou renseignez-vous sur les transactions par carte.",
+     "6. Relevés de compte : Demandez ou recevez des relevés de compte par e-mail ou par courrier postal.",
+     "7. Modification des informations personnelles : Mettez à jour les informations de contact, l'adresse postale ou l'adresse e-mail.",
+     "8. Informations sur les prêts et les hypothèques : Renseignez-vous sur les prêts existants, les taux hypothécaires et les options de paiement.",
+     "9. Support client : Parlez à un représentant du service client pour des questions, des problèmes ou des réclamations.",
+     "10. Ouverture de compte : Renseignez-vous sur l'ouverture de nouveaux comptes, tels que des comptes d'épargne, des certificats de dépôt (CD) ou des comptes de retraite.",
+     "11. Conseils financiers : Accédez à des services de conseil financier pour des conseils en matière d'investissement ou de planification de la retraite.",
+     "12. Taux d'intérêt : Consultez les taux d'intérêt actuels pour les comptes d'épargne, les prêts ou d'autres produits financiers.",
+     "13. Localisateur d'agences et de distributeurs automatiques : Trouvez la succursale ou le distributeur automatique le plus proche.",
+     "14. Cote de crédit : Renseignez-vous sur les cotes de crédit ou les rapports de crédit.",
+     "15. Réinitialisation de mot de passe et sécurité du compte : Réinitialisez les mots de passe ou renseignez-vous sur la sécurité du compte.",
+     "16. Options de langue : Choisissez une langue préférée pour la communication.",
+     "17. Feedback et sondages : Participez à des enquêtes de satisfaction de la clientèle ou donnez votre avis.",
+     "18. Demande de rappel : Demandez un rappel d'un représentant de la banque pour des questions plus complexes."
+   ],
+  "menu_title_french": [
+     "Demande de solde de compte",
+     "Historique des transactions",
+     "Historique des transactions",
+     "Virements de fonds",
+     "Paiement de factures",
+     "Services de cartes",
+     "Relevés de compte",
+     "Modification des informations personnelles",
+     "Informations sur les prêts et les hypothèques",
+     "Support client",
+     "Ouverture de compte",
+     "Conseils financiers",
+     "Taux d'intérêt",
+     "Localisateur d'agences et de distributeurs automatiques",
+     "Cote de crédit",
+     "Réinitialisation de mot de passe et sécurité du compte",
+     "Options de langue",
+     "Feedback et sondages",
+     "Demande de rappel"
+  ]
 }
 

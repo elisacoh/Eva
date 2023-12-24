@@ -1,4 +1,4 @@
-# import openai
+#import openai
 # import json
 # from datetime import datetime
 # import os
@@ -151,27 +151,59 @@
 
 
 import openai
-import json
 from datetime import datetime
-import os
+
 
 class Assistant:
     def __init__(self, config):
         self.api_key = config["api_key"]
-        self.model_name = config["model_name"]
+        self.model_name = config["model_name"] # todo: change it to inherite it from the json file
+        self.prompt = config["prompt"] #todo : change it for a fucntion receive from json
         # Add other configuration attributes here
         self.prompt_history = []
+        self.conversation = []
+        self.menu = config["menu"]
 
         openai.api_key = self.api_key
+
 
 
     def update_historic(self, user_identifier, data): # Update the conversation history log
         return "update historic_succeed"
 
+    def generate_answer(self, customer_input):
+        # Create a message for the user's input
+        user_message = {"role": "user", "content": customer_input}
 
-    def generate_response(self, user_input):
+        # Append the user's message to the conversation
+        self.conversation.append(user_message)
 
-        return "generate_response succeed"
+        # Create a completion with the entire conversation
+        completion = openai.ChatCompletion.create(
+            model=self.model_name,
+            messages=[
+                {"role": "system",
+                 "content": self.prompt},
+                     ] + self.conversation,
+            temperature=1
+        )
+
+        # Extract the assistant's reply
+        assistant_reply = completion['choices'][0]['message']['content']
+
+        # Append the assistant's reply to the conversation
+        self.conversation.append({"role": "assistant", "content": assistant_reply})
+        self.extract_menu_option(assistant_reply)
+        return assistant_reply
+
+    def extract_menu_option(self, response):
+        # Iterate through each menu option
+        for index, option in enumerate(self.menu):
+            # Check if the option text exists in the response
+            if option in response:
+                print('\nService found #',index,": " ,option)
+                return str(index)  # Return the index of the matched option
+        return None  # Return None if no menu option is found
 
     def get_historic(self):
         # Fetch historical conversation data
@@ -204,38 +236,38 @@ class Assistant:
         # Add a prompt for a specific service
         return "add_prompt succeed"
 
-
-class User:
-    def __init__(self, user_identifier):
-        self.user_identifier = user_identifier
-
-    def send_input(self, user_input):
-        # Send user input to the assistant
-        return "send_input succeed"
-
-    def receive_response(self, response):
-        # Receive and process the assistant's response
-        return "receive_response succeed"
-
-
-
-
+#
+# class User:
+#     def __init__(self, user_identifier):
+#         self.user_identifier = user_identifier
+#
+#     def send_input(self, user_input):
+#         # Send user input to the assistant
+#         return "send_input succeed"
+#
+#     def receive_response(self, response):
+#         # Receive and process the assistant's response
+#         return "receive_response succeed"
+#
+#
 
 
 
 
 
 
-# Load the client-specific configuration from a JSON file
-with open("client_config.json", "r") as config_file:
-    client_config = json.load(config_file)
 
-# Initialize the Assistant
-assistant = Assistant(client_config)
 
-# Example usage:
-user = User("user123")
-user_input = "I want to speak to a banker."
-response = assistant.generate_response(user_input)
-print(response)
+# # Load the client-specific configuration from a JSON file
+# with open("client_config.json", "r") as config_file:
+#     client_config = json.load(config_file)
+
+# # Initialize the Assistant
+# assistant = Assistant(client_config)
+#
+# # Example usage:
+# user = User("user123")
+# user_input = "I want to speak to a banker."
+# response = assistant.generate_response(user_input)
+# print(response)
 
