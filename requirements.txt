@@ -1,1 +1,5 @@
+streamlit
 pyaudio
+keyboard
+openai
+pyttsx3
