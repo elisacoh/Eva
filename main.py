@@ -1,5 +1,6 @@
 # The main program file that orchestrates the AI assistant and handles user interactions.
-from src import voice_input, assistant, voice_output
+from src import assistant, voice_output
+# import voice_input #todo : remettre 
 import keyboard
 import openai
 import json
