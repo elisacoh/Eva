@@ -6,7 +6,7 @@ import json
 import os
 import streamlit as st
 
-st.set_page_config(page_title"Eva Vocal Assistant")
+st.set_page_config(page_title="Eva Vocal Assistant")
 
 
 # todo: change it to this implementation:
