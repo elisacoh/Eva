@@ -1,10 +1,11 @@
 # The main program file that orchestrates the AI assistant and handles user interactions.
-from src import voice_input, assistant, voice_output
-import keyboard
+from src import assistant
+# import keyboard
 import openai
 import json
 import os
-import sys
+
+# import sys
 
 # JSON FILES IMPORT / API_KETS / PROMPTS
 # Get the directory path where main_vocal.py is located
@@ -30,13 +31,10 @@ if __name__ == '__main__':
     eva = assistant.Assistant(config)
 
     while True:
-
         # voice_input.start_recording()
         user_input = input("user: ")
         response = eva.generate_answer(user_input)
         print("Eva: " + response)
-
-
 
     #     if keyboard.is_pressed('r'):  # Press 'r' to start recording
     #         voice_input.start_recording()
