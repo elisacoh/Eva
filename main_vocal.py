@@ -1,14 +1,16 @@
 # The main program file that orchestrates the AI assistant and handles user interactions.
-from src import voice_input, assistant, voice_output
+from src import assistant, voice_output
+from src import voice_input  # todo: remettre quand utilise vocal
 import keyboard
 import openai
 import json
 import os
-
+from openai import OpenAI
 
 # todo: change it to this implementation:
 # import json
 import sys
+
 #
 # def load_config(api_keys_file_path, prompts_file_path):
 #     try:
@@ -25,7 +27,7 @@ import sys
 #
 # if __name__ == "__main__":
 #     if len(sys.argv) != 3:
-#         print("Usage: python main.py api_keys_file prompts_file")
+#         print("Usage: python main_vocal.py api_keys_file prompts_file")
 #         sys.exit(1)
 #
 #     api_keys_file_path = sys.argv[1]
@@ -36,8 +38,8 @@ import sys
 #     # Now you can access the loaded configuration data as needed.
 #
 
-#JSON FILES IMPORT / API_KETS / PROMPTS
-# Get the directory path where main.py is located
+# JSON FILES IMPORT / API_KETS / PROMPTS
+# Get the directory path where main_vocal.py is located
 current_directory = os.path.dirname(__file__)
 # Construct the file paths to the JSON files
 api_keys_file_path = os.path.join(current_directory, 'config', 'api_keys.json')
@@ -56,10 +58,10 @@ openai_api_key = api_keys_config["openai"]["api_key"]
 
 openai.api_key = openai_api_key
 
-
 if __name__ == '__main__':
     print("Start recording: Press 'r'\nStop recording: Press 'q'\nQuit program: Press 'Esc'")
     # speak("Cabinet dentaire du Docteur Carole Sion, bonjour. Comment puis-je vous aider?")
+    client = OpenAI(api_key="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")
 
     # run the program ask for key to press
     while True:
@@ -70,7 +72,12 @@ if __name__ == '__main__':
 
         while keyboard.is_pressed('q'):
             audio_file = open("recorded_audio.wav", "rb")
-            transcript = openai.Audio.transcribe("whisper-1", audio_file)
+            transcript = client.audio.transcriptions.create(
+                model="whisper-1",
+                file=audio_file,
+                response_format="text"
+            )
+
             user_input = transcript['text']
             print("User:", user_input)
             response = assistant.generate_response(user_input)
@@ -79,13 +86,13 @@ if __name__ == '__main__':
             assistant.prompt += response
 
         if keyboard.is_pressed('Esc'):
-            audio_file = open("recorded_audio.wav", "rb")
-            transcript = openai.Audio.transcribe("whisper-1", audio_file)
-            user_input = transcript['text']
-            print("User:", user_input)
-            response = assistant.generate_response(user_input)
-            voice_output.speak(response)
-            print("Eva:", response)
+            # audio_file = open("recorded_audio.wav", "rb")
+            # transcript = openai.Audio.transcribe("whisper-1", audio_file)
+            # user_input = transcript['text']
+            # print("User:", user_input)
+            # response = assistant.generate_response(user_input)
+            # voice_output.speak(response)
+            # print("Eva:", response)
             break
 
     print("Goodbye Eva!")

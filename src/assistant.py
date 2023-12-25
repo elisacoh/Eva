@@ -1,4 +1,4 @@
-#import openai
+# import openai
 # import json
 # from datetime import datetime
 # import os
@@ -152,56 +152,57 @@
 
 import openai
 from datetime import datetime
+from openai import OpenAI
+
+client = OpenAI(api_key="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")
 
 
 class Assistant:
     def __init__(self, config):
         self.api_key = config["api_key"]
-        self.model_name = config["model_name"] # todo: change it to inherite it from the json file
-        self.prompt = config["prompt"] #todo : change it for a fucntion receive from json
+        self.model_name = config["model_name"]  # todo: change it to inherite it from the json file
+        self.assistantID = config["assistantID"]  # todo : change it for a fucntion receive from json
         # Add other configuration attributes here
-        self.prompt_history = []
+        self.prompt_history = ""
         self.conversation = []
         self.menu = config["menu"]
+        self.menu_option = config["menu_option"]
 
         openai.api_key = self.api_key
+        self.assistantID = ''.join(self.assistantID)
 
-
-
-    def update_historic(self, user_identifier, data): # Update the conversation history log
+    def update_historic(self, user_identifier, data):  # Update the conversation history log
         return "update historic_succeed"
 
     def generate_answer(self, customer_input):
-        # Create a message for the user's input
-        user_message = {"role": "user", "content": customer_input}
 
-        # Append the user's message to the conversation
-        self.conversation.append(user_message)
-
-        # Create a completion with the entire conversation
-        completion = openai.ChatCompletion.create(
+        completion = client.chat.completions.create(
             model=self.model_name,
             messages=[
                 {"role": "system",
-                 "content": self.prompt},
-                     ] + self.conversation,
+                 "content": (self.assistantID + "This is your conversation so far: " + self.prompt_history)
+                 },
+                {"role": "user", "content": customer_input}
+            ],
             temperature=1
         )
+        assistant_reply = completion.choices[0].message.content
+        # self.prompt_history += ("User" + customer_input)
 
-        # Extract the assistant's reply
-        assistant_reply = completion['choices'][0]['message']['content']
-
-        # Append the assistant's reply to the conversation
-        self.conversation.append({"role": "assistant", "content": assistant_reply})
+        self.prompt_history += ("user:" + customer_input + "system:" + assistant_reply)
+        # print("History: " + self.prompt_history)
+        self.conversation.append({"role": "system", "content": assistant_reply})
+        self.conversation.append({"role": "user", "content": customer_input})
         self.extract_menu_option(assistant_reply)
+
         return assistant_reply
 
     def extract_menu_option(self, response):
         # Iterate through each menu option
-        for index, option in enumerate(self.menu):
+        for index, option in enumerate(self.menu_option):
             # Check if the option text exists in the response
             if option in response:
-                print('\nService found #',index,": " ,option)
+                print('\nService found #', index, ": ", option)
                 return str(index)  # Return the index of the matched option
         return None  # Return None if no menu option is found
 
@@ -212,6 +213,7 @@ class Assistant:
     def get_client_info(self):
         # Fetch additional client information
         return "get_client_info succeed"
+
     def set_tonality(self, tonality):
         # Set the tonality attribute
         return "set_tonality succeed"
@@ -236,6 +238,7 @@ class Assistant:
         # Add a prompt for a specific service
         return "add_prompt succeed"
 
+
 #
 # class User:
 #     def __init__(self, user_identifier):
@@ -252,12 +255,6 @@ class Assistant:
 #
 
 
-
-
-
-
-
-
 # # Load the client-specific configuration from a JSON file
 # with open("client_config.json", "r") as config_file:
 #     client_config = json.load(config_file)
@@ -271,3 +268,9 @@ class Assistant:
 # response = assistant.generate_response(user_input)
 # print(response)
 
+def generate_response(user_input):
+    return None
+
+
+def prompt():
+    return None
