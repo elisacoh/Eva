@@ -1,5 +1,7 @@
 import openai
 from openai import OpenAI
+from src import voice_output
+
 
 client = OpenAI(api_key="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")
 
@@ -40,6 +42,9 @@ class Assistant:
         self.conversation.append({"role": "user", "content": customer_input})
         self.extract_menu_option(assistant_reply)
 
+        voice_output.voice_response(assistant_reply)
+
+
         return assistant_reply
 
     def extract_menu_option(self, response):
@@ -61,7 +66,7 @@ class Assistant:
 
     def set_tonality(self, tonality):
         # Set the tonality attribute
-        return "set_tonality succeed"
+        return "set_tonality succeed "
 
     def set_styling(self, styling):
         # Set the styling attribute

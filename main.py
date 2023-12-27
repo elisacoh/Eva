@@ -1,4 +1,6 @@
 # The main program file that orchestrates the AI assistant and handles user interactions.
+import base64
+
 from src import assistant
 # import keyboard
 import openai
@@ -23,18 +25,30 @@ openai.api_key = openai_api_key
 with open(prompts_file_path, 'r') as config_file:
     config = json.load(config_file)
 
+
+
 if __name__ == '__main__':
     # print("Start recording: Press 'r'\nStop recording: Press 'q'\nQuit program: Press 'Esc'")
     # speak("Cabinet dentaire du Docteur Carole Sion, bonjour. Comment puis-je vous aider?")
 
     # run the program ask for key to press
     eva = assistant.Assistant(config)
+    # todo: deplacer le frontend ailleurs
+    #app.run(debug=True)
 
     while True:
         # voice_input.start_recording()
         user_input = input("user: ")
         response = eva.generate_answer(user_input)
         print("Eva: " + response)
+        # response = client.audio.speech.create(
+        #     model="tts-1",
+        #     voice="nova",
+        #     input=response
+        # )
+        #
+        # response.stream_to_file(speech_file_path)
+        # play_audio(audio_file_path)
 
     #     if keyboard.is_pressed('r'):  # Press 'r' to start recording
     #         voice_input.start_recording()
@@ -62,3 +76,6 @@ if __name__ == '__main__':
     #
     # print("Goodbye Eva!")
     # # Initialize the text-to-speech engine
+
+
+

@@ -1,0 +1,9 @@
+27/12/23:
+input = txt input
+output = voix
+il faut ameliorer la rapidite de la  voix, peut etre la decouper en phrase. ou alors exporter une premiere phrase avec nlp
+et le reste apres
+de plus apparement on peut implementer un chat directement donc a rajouter:
+https://platform.openai.com/docs/api-reference/audio/createTranslation
+
+Se reconcentrer, une chose a la fois!

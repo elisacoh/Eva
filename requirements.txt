@@ -1,4 +1,8 @@
-streamlit
-keyboard
-openai
-pyttsx3
+keyboard~=0.13.5
+openai~=1.6.1
+pyttsx3~=2.90
+
+PyAudio~=0.2.14
+Wave~=0.0.2
+flask~=3.0.0
+pygame~=2.5.2

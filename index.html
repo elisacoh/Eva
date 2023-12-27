@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Assistant App</title>
+</head>
+<body>
+    <h1>Your Assistant App</h1>
+    <form method="POST" action="/process">
+        <label for="user_input">User Input:</label>
+        <input type="text" id="user_input" name="user_input" required>
+        <button type="submit">Submit</button>
+    </form>
+    {% if user_input %}
+        <p>User: {{ user_input }}</p>
+    {% endif %}
+    {% if assistant_reply %}
+        <p>Assistant: {{ assistant_reply }}</p>
+    {% endif %}
+</body>
+</html>
