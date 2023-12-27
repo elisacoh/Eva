@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     # run the program ask for key to press
     eva = assistant.Assistant(config)
-    # todo: deplacer le frontend ailleurs
+
     #app.run(debug=True)
 
     while True:
